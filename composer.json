@@ -1,0 +1,78 @@
+{
+    "name": "digitlimit/flag",
+    "description": "Laravel Flags.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Emeka Mbah",
+            "email": "frankemeks77@yahoo.com",
+            "homepage": "https://emekambah.medium.com"
+        }
+    ],
+    "homepage": "https://github.com/digitlimit/flag",
+    "keywords": [
+        "laravel",
+        "flags",
+        "countries"
+    ],
+    "require": {
+        "ext-json": "*",
+        "php": "^8.2",
+        "laravel/framework": "^10.0 || ^11.0 || ^12.0",
+        "livewire/livewire": "^2.12 || ^3.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Digitlimit\\Flag\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Digitlimit\\Flag\\Tests\\": "tests",
+            "App\\": "workbench/app/",
+            "Database\\Factories\\": "workbench/database/factories/",
+            "Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FlagServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "composer/installers": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require-dev": {
+        "laravel/pint": "^1.21",
+        "pestphp/pest": "^3.7",
+        "orchestra/testbench": "^10.0"
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve --ansi"
+        ],
+        "lint": [
+            "@php vendor/bin/pint --ansi"
+        ],
+        "test": [
+            "@clear",
+            "@php vendor/bin/pest"
+        ]
+    }
+}
