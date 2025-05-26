@@ -23,7 +23,6 @@ class FlagServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/flag.php', 'flag');
         $this->commands([
             Generator::class,
         ]);

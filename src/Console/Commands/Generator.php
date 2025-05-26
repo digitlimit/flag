@@ -19,11 +19,18 @@ class Generator extends Command
      */
     public function handle(): int
     {
-        $source = $this->option('source')
-            ?? base_path('resources/flags');
+        $source = $this->option('source');
+        $destination = $this->option('destination');
 
-        $destination = $this->option('destination')
-            ?? base_path('resources/views/components/flag');
+        if (empty($source)) {
+            $this->error('Provide a source folder using the --source option');
+            return 1;
+        }
+
+        if (empty($destination)) {
+            $this->error('Provide a destination folder using the --destination option');
+            return 1;
+        }
 
         if (!File::exists($source)) {
             $this->error("❌ Source folder does not exist: {$source}");
@@ -42,7 +49,26 @@ class Generator extends Command
             $countryCode = strtolower($file->getFilenameWithoutExtension());
             $bladePath = "{$destination}/{$countryCode}.blade.php";
 
-            File::put($bladePath, File::get($file));
+            $svg = File::get($file);
+
+            // Inject class binding into the <svg> tag if not already present
+            if (preg_match('/<svg[^>]*>/', $svg, $matches)) {
+                $originalTag = $matches[0];
+
+                // Only inject if no class attribute present
+                if (!str_contains($originalTag, 'class=')) {
+                    $replacementTag = str_replace(
+                        '<svg',
+                        '<svg {{ $attributes->merge([\'class\' => \'\']) }}',
+                        $originalTag
+                    );
+
+                    // Replace the original tag with the modified one
+                    $svg = str_replace($originalTag, $replacementTag, $svg);
+                }
+            }
+
+            File::put($bladePath, $svg);
 
             $this->line("✅ Generated Blade for <x-flag-{$countryCode}>");
         }
