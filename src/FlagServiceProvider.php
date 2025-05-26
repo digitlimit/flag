@@ -16,6 +16,14 @@ class FlagServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'flag');
+
+        $this->publishes([
+            __DIR__ . '/../../public' => public_path('vendor/flag'),
+        ], 'flag-assets');
+
+        $this->publishes([
+            __DIR__ . '/../../resources/views' => resource_path('views/vendor/flag'),
+        ], 'flag-views');
     }
 
     /**
