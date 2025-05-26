@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" id="flag-icons-asean" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" {{ $attributes->merge(['class' => '']) }} viewBox="0 0 512 512">
   <path fill="#0039a6" stroke-width="4.18046" d="M0 0h512v512H0z"/>
   <circle cx="256" cy="256" r="153.6" fill="#fff" stroke-width="5.12"/>
   <circle cx="256" cy="256" r="146.4" fill="#ed2939" stroke-width="5.12"/>

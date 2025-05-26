@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icons-mt" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" {{ $attributes->merge(['class' => '']) }} viewBox="0 0 512 512">
   <path fill="#fff" d="M0 0h512v512H0Z"/>
   <path fill="#cf142b" d="M256 0h256v512H256Z"/>
   <g fill="#fff" stroke="#000" stroke-width="96" transform="translate(109 119.6)scale(.00919)">
