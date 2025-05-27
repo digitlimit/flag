@@ -5,6 +5,8 @@ namespace Digitlimit\Flag;
 use Digitlimit\Flag\Console\Commands\Generator;
 use Exception;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
+use Digitlimit\Flag\Component\Flag;
 
 class FlagServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,8 @@ class FlagServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../resources/views' => resource_path('views/vendor/flag'),
         ], 'flag-views');
+
+        Blade::component('flag', Flag::class);
     }
 
     /**
