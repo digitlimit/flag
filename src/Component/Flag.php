@@ -13,7 +13,7 @@ class Flag extends Component
 
     public function __construct($code)
     {
-        $this->code = $code;
+        $this->code = strtolower($code);
     }
 
     public function render(): View
